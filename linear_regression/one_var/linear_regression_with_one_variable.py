@@ -15,7 +15,6 @@ def h(c1, c2, xh):
     return yh
 
 
-
 # cost function of the form of squared mean error function
 def j(p1, p2, m, x, y):
     sum = 0
@@ -41,14 +40,22 @@ data_y = dataset['y'][:50]
 
 data_x = data_x.to_numpy()
 data_x = data_x.reshape(len(data_x), 1)
-y = h(0, 1, data_x)
+h_y = h(0, 1, data_x)
 
+plt.style.use("seaborn")
+fig, (ax_train, ax_h) = plt.subplots(2, 1, sharex=True)
 
-plt.scatter(data_x, data_y)
-plt.plot(data_x, y)
-plt.title("Training Data")
-plt.xlabel("x value")
-plt.ylabel("random y value generated")
+ax_train.set_title("Training Data Plot")
+ax_train.scatter(data_x, data_y)
+ax_train.set_ylabel("Random nums generated")
+
+ax_h.set_title("Hypothesis Function Plot")
+ax_h.set_xlabel("x_numbers")
+ax_h.set_ylabel("predictions by h(x)")
+ax_h.plot(data_x, h_y, 'm')
+
 plt.show()
+
+
 
 
