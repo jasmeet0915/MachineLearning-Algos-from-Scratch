@@ -29,6 +29,12 @@ def plot_j(x_train, y_train):
     param2 = np.arange(-5, 5, 0.25)
     param2 = param2.reshape(len(param2), 1)
 
+    param1, param2 = np.meshgrid(param1, param2)
+    print(param1)
+    print(param2)
+    print(param1.shape)
+    print(param2.shape)
+
     j_value = []
 
     for i in range(0, len(param1)):
@@ -45,14 +51,13 @@ def plot_j(x_train, y_train):
     fig = plt.figure()
     ax = fig.gca(projection='3d')
     surf = ax.plot_surface(param1, param2, j_value, cmap=cm.coolwarm, linewidth=10)
-    # Customize the z axis.
-    ax.set_zlim(-1.01, 1.01)
-    ax.zaxis.set_major_locator(LinearLocator(10))
-    ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
 
     # Add a color bar which maps values to colors.
     fig.colorbar(surf, shrink=0.5, aspect=5)
 
+    plt.show()
+
+    plt.scatter(param1, param2)
     plt.show()
 
 
