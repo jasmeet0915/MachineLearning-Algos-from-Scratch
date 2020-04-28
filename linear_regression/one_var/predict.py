@@ -1,18 +1,22 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import train
 
 dataset = pd.read_csv("/home/singh/PycharmProjects/MachineLearning_from_Scratch/Datasets/linear_regression"+
                       "/one_var/train.csv")
 
 print("Shape of dataset: " + str(dataset.shape))
-print("\ndataset head: \n" + str(dataset.head()))
 
 data_x = dataset['x'][:50]
 data_y = dataset['y'][:50]
 
 data_x = data_x.to_numpy()
+data_y = data_y.to_numpy()
 data_x = data_x.reshape(len(data_x), 1)
+data_y = data_y.reshape(len(data_y), 1)
+
+train.fit()
 
 
 # hypothesis function of the form y = c1 + c2*x
@@ -25,14 +29,6 @@ def h(c1, c2, xh):
     yh = a1.dot(a2)
 
     return yh
-
-
-''''# cost function of the form of squared mean error function
-def j(pred, x, y):
-    # use different params to calculate different h_y and send them as preds to j() for plotting
-    # this way it will be easier for j to calculate and will be faster as h() will be caculated with matrix multiplication fastly
-
-'''
 
 
 def plot_all(para1, para2, x_data, y_data):
@@ -56,6 +52,8 @@ def plot_all(para1, para2, x_data, y_data):
 
 
 plot_all(0, 1, data_x, data_y)
+train.plot_j(data_x, data_y)
+
 
 
 
